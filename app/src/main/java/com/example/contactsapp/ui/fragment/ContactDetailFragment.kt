@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import com.example.contactsapp.R
 import com.example.contactsapp.databinding.FragmentContactDetailBinding
 
 class ContactDetailFragment : Fragment() {
@@ -29,7 +28,6 @@ class ContactDetailFragment : Fragment() {
 
             updateContact(gelenKisi.kisi_id,updatedContactName,updatedContactNo)
         }
-
         return binding.root
     }
 
