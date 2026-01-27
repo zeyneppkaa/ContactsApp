@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.contactsapp.R
 import com.example.contactsapp.data.entity.Kisiler
 import com.example.contactsapp.databinding.FragmentHomeBinding
@@ -17,10 +17,9 @@ import com.example.contactsapp.ui.adapter.ContactAdapter
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        binding.toolbarHome.title = "Home"
-        binding.rv.layoutManager = LinearLayoutManager(requireContext())
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding.homeFragmentObject = this
+        binding.homeToolbarTitle = "Home"
 
         val contactsList = ArrayList<Kisiler>()
         val k1 = Kisiler(1, "Ahmet", "1111")
@@ -31,11 +30,8 @@ class HomeFragment : Fragment() {
         contactsList.add(k3)
 
         val contactsAdapter = ContactAdapter(requireContext(), contactsList)
-        binding.rv.adapter = contactsAdapter
+        binding.contactAdapter = contactsAdapter
 
-        binding.fab.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_addContactFragment)
-        }
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextChange(newText: String): Boolean {
@@ -52,6 +48,9 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    fun fabClick(it : View){
+        Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_addContactFragment)
+    }
     fun search(searchingWord : String){
         Log.e("Search Contact", searchingWord)
     }

@@ -4,8 +4,10 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.contactsapp.R
 import com.example.contactsapp.data.entity.Kisiler
 import com.example.contactsapp.databinding.CardDesignBinding
 import com.example.contactsapp.ui.fragment.HomeFragmentDirections
@@ -16,7 +18,7 @@ class ContactAdapter(var mContext: Context, var contactsList : List<Kisiler>)
     inner class CardDesignHolder(var design : CardDesignBinding) : RecyclerView.ViewHolder(design.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardDesignHolder {
-        val binding = CardDesignBinding.inflate(LayoutInflater.from(mContext),parent,false)
+        val binding: CardDesignBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.card_design ,parent,false)
         return CardDesignHolder(binding)
     }
 
@@ -24,8 +26,7 @@ class ContactAdapter(var mContext: Context, var contactsList : List<Kisiler>)
         val contact = contactsList.get(position)
         val d = holder.design
 
-        d.textViewContactName.text = contact.kisi_ad
-        d.textViewContactNo.text = contact.kisi_tel
+        d.contactObject = contact
 
         d.cardViewLine.setOnClickListener {
             val goToDetail = HomeFragmentDirections.actionHomeFragmentToContactDetailFragment(kisi = contact )
