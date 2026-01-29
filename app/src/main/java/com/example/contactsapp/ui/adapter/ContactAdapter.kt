@@ -11,6 +11,7 @@ import com.example.contactsapp.data.entity.Kisiler
 import com.example.contactsapp.databinding.CardDesignBinding
 import com.example.contactsapp.ui.fragment.HomeFragmentDirections
 import com.example.contactsapp.ui.viewmodel.HomeViewModel
+import com.example.contactsapp.util.goTo
 import com.google.android.material.snackbar.Snackbar
 
 class ContactAdapter(var mContext: Context, var contactsList : List<Kisiler>, var viewModel: HomeViewModel)
@@ -30,7 +31,7 @@ class ContactAdapter(var mContext: Context, var contactsList : List<Kisiler>, va
 
         d.cardViewLine.setOnClickListener {
             val goToDetail = HomeFragmentDirections.actionHomeFragmentToContactDetailFragment(kisi = contact )
-            Navigation.findNavController(it).navigate(goToDetail)
+            Navigation.goTo(it,goToDetail)
         }
 
         d.imageViewDelete.setOnClickListener {

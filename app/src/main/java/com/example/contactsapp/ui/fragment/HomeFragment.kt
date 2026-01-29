@@ -13,6 +13,7 @@ import com.example.contactsapp.R
 import com.example.contactsapp.databinding.FragmentHomeBinding
 import com.example.contactsapp.ui.adapter.ContactAdapter
 import com.example.contactsapp.ui.viewmodel.HomeViewModel
+import com.example.contactsapp.util.goTo
 import kotlin.getValue
 
 class HomeFragment : Fragment() {
@@ -50,7 +51,7 @@ class HomeFragment : Fragment() {
     }
 
     fun fabClick(it : View){
-        Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_addContactFragment)
+        Navigation.goTo(it,R.id.action_homeFragment_to_addContactFragment)
     }
 
     override fun onResume() {
