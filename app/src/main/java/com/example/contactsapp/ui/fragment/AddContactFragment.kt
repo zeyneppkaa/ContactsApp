@@ -10,7 +10,9 @@ import androidx.fragment.app.viewModels
 import com.example.contactsapp.R
 import com.example.contactsapp.databinding.FragmentAddContactBinding
 import com.example.contactsapp.ui.viewmodel.AddContactViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddContactFragment : Fragment() {
     private lateinit var binding: FragmentAddContactBinding
     private lateinit var viewModel : AddContactViewModel

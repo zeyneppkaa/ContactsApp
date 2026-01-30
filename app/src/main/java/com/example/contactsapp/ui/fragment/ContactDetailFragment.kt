@@ -11,8 +11,10 @@ import androidx.navigation.fragment.navArgs
 import com.example.contactsapp.R
 import com.example.contactsapp.databinding.FragmentContactDetailBinding
 import com.example.contactsapp.ui.viewmodel.ContactDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.getValue
 
+@AndroidEntryPoint
 class ContactDetailFragment : Fragment() {
     private lateinit var binding: FragmentContactDetailBinding
     private lateinit var viewModel : ContactDetailViewModel

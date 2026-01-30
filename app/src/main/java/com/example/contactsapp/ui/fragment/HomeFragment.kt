@@ -14,8 +14,10 @@ import com.example.contactsapp.databinding.FragmentHomeBinding
 import com.example.contactsapp.ui.adapter.ContactAdapter
 import com.example.contactsapp.ui.viewmodel.HomeViewModel
 import com.example.contactsapp.util.goTo
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.getValue
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel : HomeViewModel

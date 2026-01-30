@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -59,4 +60,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.5.1")
     implementation("androidx.activity:activity-ktx:1.6.1")
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
 }

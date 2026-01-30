@@ -4,12 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.contactsapp.data.entity.Kisiler
 import com.example.contactsapp.data.repo.ContactsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
-class HomeViewModel : ViewModel() {
-    var crepo = ContactsRepository()
+import javax.inject.Inject
+@HiltViewModel
+class HomeViewModel @Inject constructor(var crepo: ContactsRepository) : ViewModel() {
     var contactsList = MutableLiveData<List<Kisiler>>()
 
     init{
