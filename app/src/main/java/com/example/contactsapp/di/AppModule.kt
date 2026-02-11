@@ -1,10 +1,15 @@
 package com.example.contactsapp.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.contactsapp.data.datasource.ContactsDataSource
 import com.example.contactsapp.data.repo.ContactsRepository
+import com.example.contactsapp.room.ContactsDao
+import com.example.contactsapp.room.DataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -13,13 +18,21 @@ import javax.inject.Singleton
 class AppModule {
     @Provides
     @Singleton
-    fun provideContactsDataSource() : ContactsDataSource{
-        return ContactsDataSource()
+    fun provideContactsDataSource(cdao: ContactsDao) : ContactsDataSource{
+        return ContactsDataSource(cdao)
     }
 
     @Provides
     @Singleton
     fun provideContactsRepository(cds : ContactsDataSource) : ContactsRepository {
         return ContactsRepository(cds)
+    }
+
+    @Provides
+    @Singleton
+    fun provideContactsDao(@ApplicationContext context: Context) : ContactsDao {
+        val db = Room.databaseBuilder(context, DataBase::class.java, "rehber.sqlite")
+            .createFromAsset("rehber.sqlite").build()
+        return db.getContactsDao()
     }
 }
