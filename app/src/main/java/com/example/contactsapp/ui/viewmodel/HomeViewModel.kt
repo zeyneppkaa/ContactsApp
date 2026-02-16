@@ -26,13 +26,18 @@ class HomeViewModel @Inject constructor(var crepo: ContactsRepository) : ViewMod
 
     fun loadContacts() {
         CoroutineScope(Dispatchers.Main).launch {
-            contactsList.value = crepo.loadContacts()
+            try {
+                contactsList.value = crepo.loadContacts()
+            }catch (e: Exception){}
+
         }
     }
 
     fun search(searchingWord : String){
         CoroutineScope(Dispatchers.Main).launch {
-            contactsList.value = crepo.search(searchingWord)
+            try {
+                contactsList.value = crepo.search(searchingWord)
+            }catch (e: Exception){}
         }
     }
 }
